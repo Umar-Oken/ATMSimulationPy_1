@@ -2,17 +2,45 @@
    "cards": [
       {
          "card_number": "8600123412341234",
+         "valid_trust": "11/30",
          "pin": "1234",
          "account_id": "acc_1",
          "owner": "Ali Valiyev",
-         "blocked": false,
+         "blocked": 0,
+         "pin_tries": 0
+      },
+      {
+         "card_number": "5614680000315941",
+         "valid_trust": "11/30",
+         "pin": "2026",
+         "account_id": "acc_2",
+         "owner": "Jasurbek Bekmirzayev",
+         "blocked": 0,
          "pin_tries": 0
       },
       {
          "card_number": "1111111111111111",
-         "pin": "2000",
-         "account_id": "acc_2",
-         "owner": "Umar ",
+         "valid_trust": "11/30",
+         "pin": "7777",
+         "account_id": "acc_3",
+         "owner": "Teshaboy Boltayev",
+         "blocked": false,
+         "pin_tries": 0
+      },
+      {
+         "card_number": "7777777777777777",
+         "valid_trust": "11/30",
+         "pin": "1111",
+         "account_id": "acc_4",
+         "owner": "Ketmonbek Teshaboyev",
+         "blocked": false,
+         "pin_tries": 0
+      },
+      {
+         "card_number": "0000000000000000",
+         "pin": "0000",
+         "account_id": "acc_5",
+         "owner": "Gayrat",
          "blocked": false,
          "pin_tries": 0
       }
@@ -21,6 +49,21 @@
       {
          "account_id": "acc_1",
          "balance": 1250000,
+         "currency": "UZS"
+      },
+      {
+         "account_id": "acc_2",
+         "balance": 0,
+         "currency": "UZS"
+      },
+      {
+         "account_id": "acc_3",
+         "balance": 0,
+         "currency": "UZS"
+      },
+      {
+         "account_id": "acc_4",
+         "balance": 0,
          "currency": "UZS"
       }
    ],

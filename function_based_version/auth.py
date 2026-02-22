@@ -2,6 +2,7 @@ import json
 import os
 import time
 from pathlib import Path
+import datetime
 
 from colorama import Fore, Style
 
@@ -10,7 +11,10 @@ BASE = Path(__file__).parent.parent
 
 def check_pin_code():
     pin_code = input("🔢PIN kod o'rnating:")
-    confirm_pin = input("🔢PIN kod ni qayta kiriting:")
+    if len(pin_code) == 4:
+        confirm_pin = input("🔢PIN kod ni qayta kiriting:")
+    else:
+        print(Fore.RED + Style.BRIGHT  + "Pin kod 4 honadan iborat bolish kere")
     while pin_code != confirm_pin:
         print(Fore.RED + Style.BRIGHT + "PIN kodlar mos kelmadi")
         time.sleep(2)
@@ -19,12 +23,7 @@ def check_pin_code():
         return pin_code
 
 
-def check_owner():
-    owner = input("Karta kim uchun:")
-
-
-def register_card() -> bool :
-    card_number = input("💳Karta raqamini kiriting:")
+def card_validator(card_number: str):
     if not card_number.isdigit():
         print(Fore.RED + Style.BRIGHT + "Karta raqamida faqat raqamlar bo'lishi kerak!")
         time.sleep(4)
@@ -34,8 +33,13 @@ def register_card() -> bool :
         time.sleep(4)
         return False
 
+
+def register_card() -> bool:
+    card_number = input("💳Karta raqamini kiriting:")
+    card_validator(card_number)
     with open(os.path.join(BASE / "db/data.json"), "r") as db:  # new
         data = json.load(db)
+        print(datetime.date.strftime(datetime.date.today(), "%d/%y"))
 
     if card_number in [d["card_number"] for d in data["cards"]]:
         print(Fore.RED + Style.BRIGHT + "Bunday karta allaqachon mavjud!")
@@ -46,6 +50,11 @@ def register_card() -> bool :
     account_id = f"acc_{int(last_account[-1]) + 1}"
     owner = input(Fore.GREEN + Style.BRIGHT + "To'liq ism ni kiriting:")
     with open(os.path.join(BASE / "db/data.json"), "w") as db:  # new
+        data["accounts"].append({
+            "account_id": account_id,
+            "balance": 0,
+            "currency": "UZS"
+        })
         data["cards"].append({
             "card_number": card_number,
             "pin": pin_code,
@@ -55,4 +64,17 @@ def register_card() -> bool :
             "pin_tries": 0
         })
         json.dump(data, db, indent=3)
+    return True
+
+
+def login_card() -> bool:
+    card_number = input("💳Karta raqamini kiriting:")
+    card_validator(card_number)
+    with open(os.path.join(BASE / "db/data.json"), "r") as db:  # new
+        data = json.load(db)
+
+    if card_number not in [d["card_number"] for d in data["cards"]]:
+        print(Fore.RED + Style.BRIGHT + "Bunday karta mavjud emas!")
+        time.sleep(3)
+        return False
     return True
