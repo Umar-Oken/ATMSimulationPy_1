@@ -43,6 +43,14 @@
          "owner": "Gayrat",
          "blocked": false,
          "pin_tries": 0
+      },
+      {
+         "card_number": "6556145620123220",
+         "pin": "2002",
+         "account_id": "acc_6",
+         "owner": "Teshaboy Omonov",
+         "blocked": false,
+         "pin_tries": 0
       }
    ],
    "accounts": [
@@ -63,6 +71,11 @@
       },
       {
          "account_id": "acc_4",
+         "balance": 0,
+         "currency": "UZS"
+      },
+      {
+         "account_id": "acc_6",
          "balance": 0,
          "currency": "UZS"
       }
